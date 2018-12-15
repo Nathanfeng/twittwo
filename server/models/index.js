@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 mongoose.set('debug', true);
-mongoose.Promose = Promose;
+mongoose.Promise = Promise;
 mongoose.connect('mongodb://localhost/twittwo', {
   keepAlive: true,
   useMongoClient: true
 });
+
+module.exports.User = require('./user');

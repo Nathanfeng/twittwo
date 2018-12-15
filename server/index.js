@@ -5,12 +5,14 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const errorHandler = require('./handlers/error');
 const authRoutes = require('./routes/auth');
+const messageRoutes = require('./routes/messages');
 
 const PORT = 3000;
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use('/api/auth', authRoutes);
+app.use('/api/users/:id/messages', messageRoutes);
 // routes
 
 app.use(function(req, res, next){

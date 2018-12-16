@@ -6,13 +6,14 @@ const bodyParser = require('body-parser');
 const errorHandler = require('./handlers/error');
 const authRoutes = require('./routes/auth');
 const messageRoutes = require('./routes/messages');
+const {loginRequired, ensureCorrectUser} = require('./middleware/auth');
 
 const PORT = 3000;
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use('/api/auth', authRoutes);
-app.use('/api/users/:id/messages', messageRoutes);
+app.use('/api/users/:id/messages', loginRequired, ensureCorrectUser, messageRoutes);
 // routes
 
 app.use(function(req, res, next){
